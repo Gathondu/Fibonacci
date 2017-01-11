@@ -1,3 +1,21 @@
+import sys
+
+
+def _quit():
+    sys.exit(1)
+
+
+def checkLength(n):
+    """Due to implementation of recursion checking the fibonacci sequence
+    total of a number greater than 998 throws a RecursionError
+    """
+    try:
+        fiboTotal(fibo(n))
+    except RecursionError:
+        print("Value should be a number less than 999 (not inclusive)")
+        return True
+
+
 def roundFloat(n):
     return round(n)
 
@@ -33,6 +51,10 @@ def fiboTotal(sequence):
 
 
 def fibo(n=None):
+    # this allows for test fibo(0) to run correctly
+    if n == 0:
+        sequence = []
+        return sequence
     # prompt user for input
     n = n or getInput()
 
@@ -64,5 +86,13 @@ def fibo(n=None):
             sequence.append(value)
         return sequence
 
+if __name__ == "__main__":
     # print out the results
-    # prompt user to quit or generate another sequence
+    n = getInput()
+    print(fibo(n))
+
+    if checkLength(n):
+        checkLength(n)
+    else:
+        print("The total of the fibonacci sequence to {} is: {}"
+              .format(n, fiboTotal(fibo(n))))

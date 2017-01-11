@@ -1,3 +1,5 @@
 .cache
 fibo.pyc
 __pycache__
+.json
+.vscode
